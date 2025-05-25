@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direccion General de Patrimonio Cultural SGO</title>
+    <link rel="icon" type="image/png" href="{% static 'img/favi_patrimonio.png' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.4/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.4/dist/sweetalert2.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <img src="{% static 'img/logo.png' %}" alt="Patrimonio SGO" class="w-full h-10 mr-2 object-contain">
+        <p class="level-item has-text-centered is-size-3"></p>
+      </a>
+    </div>    
+  </nav>
+  
+  <div id="columns">
+    {% block content %}
+    {% endblock %}
+  </div>
+   <footer>
+    <p>©PatrimonioSGO-2025</p>
+    <div class="footer-images">
+        <img src="{% static 'img/gob_sgo.jpg' %}" alt="Gobierno SGO">
+        <img src="{% static 'img/cultura.jpg' %}" alt="CulturaSGO">
+        <img src="{% static 'img/jefatura.jpg' %}" alt="Jefatura">
+    </div>
+</footer>
+<script src="{% static 'scripts/script.js' %}"></script>
+</body>
+</html>

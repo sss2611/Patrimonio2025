@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Usuarios Registrados</h2>
+    <ul class="list-group">
+        {% for user in users %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>Usuario:</strong> {{ user.username }} <br>
+                    <strong>Nombre:</strong> {{ user.nombre }} {{ user.apellido }} <br>
+                    <strong>Email:</strong> {{ user.email }} <br>
+                    <strong>Área:</strong> {{ user.area }}
+                </div>
+                <div>
+                    {% if user.is_superuser %}
+                        <span class="badge bg-warning text-dark">Administrador</span>
+                    {% endif %}
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay usuarios registrados aún.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

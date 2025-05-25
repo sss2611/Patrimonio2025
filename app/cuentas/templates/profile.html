@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+  {% if request.user.is_authenticated %}
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/profile/">
+          {% comment %} &nbsp; deja un espacio en blanco  {% endcomment %}
+          Bienvenido &nbsp; <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>
+        </a>
+  
+        <a class="navbar-item" href="#"> <strong>Fichas</strong> </a>
+        <a class="navbar-item" href="#"> <strong>Noticias</strong> </a>
+        <a class="navbar-item" href="#"> <strong>Colecciones</strong> </a>
+        <a class="navbar-item" href="#"> <strong>Admitir Usuarios</strong> </a>
+        <a class="navbar-item" href="#"> <strong>Cambiar contraseña</strong> </a>
+      </div>
+      
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <p> 
+            <a href="{% url 'cuentas:home' %}">
+              <strong>Salir</strong>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
