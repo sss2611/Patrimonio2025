@@ -188,3 +188,30 @@ footer img {
         object-fit: contain;
     }
 }
+
+/* estilos para el listado de usuarios*/
+.user-card {
+    border-radius: 10px;
+    background: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-admit {
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-admit:hover {
+    background: linear-gradient(45deg, #388E3C, #689F38);
+    transform: scale(1.1);
+}
