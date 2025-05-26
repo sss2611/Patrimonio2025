@@ -143,6 +143,12 @@ input {
     opacity: 0.8; /* Reduce la opacidad al pasar el cursor */
 }
 
+.btn-custom {
+    width: 100px; /* Ajusta según sea necesario */
+    padding: 8px 12px;
+}
+
+
 /* Estilos del footer para que se mueva con el contenido */
 footer {
     position: relative;

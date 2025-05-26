@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from .models import CustomUser
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-
+from .forms import UserEditForm
+from django.contrib import messages
 
 def home(request):
     return render(request, 'pages/home.html')
@@ -69,17 +69,6 @@ def users_list(request):
     users = CustomUser.objects.all()
     return render(request, "users/users_list.html", {"users": users})
 
-@csrf_exempt
-def admit_user(request, user_id):
-    """Admite a un usuario cambiando su estado a 'staff'."""
-    user = get_object_or_404(CustomUser, id=user_id)
-
-    if request.method == "POST":
-        user.is_staff = True
-        user.save()
-        return redirect("users/users_list")  # Redirigir después de admitir
-
-    return JsonResponse({"error": "Método no permitido"}, status=405)
 
 def delete_user(request, user_id):
     try:
@@ -90,3 +79,25 @@ def delete_user(request, user_id):
     if request.method == "POST":
         user.delete()
         return HttpResponse(status=204)  # Usuario eliminado sin redirección
+
+def edit_user(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+
+    if request.method == "POST":
+        form = UserEditForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Usuario actualizado correctamente.")
+            return redirect('cuentas:users_list')  # Ajusta la redirección según tu configuración
+        else:
+            messages.error(request, "Hubo un error al actualizar el usuario.")
+    else:
+        form = UserEditForm(instance=user)
+
+    return render(request, 'fichas/edit_user.html', {'form': form, 'user': user})
+
+def admit_user(request, user_id):
+    user = CustomUser.objects.get(id=user_id)
+    user.admitido = True
+    user.save()
+    return redirect('/users/')

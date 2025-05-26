@@ -10,5 +10,6 @@ urlpatterns = [
     path('register/', views.register, name='register'), 
     path('users/',views.users_list, name='users'), 
     path("admit_user/<int:user_id>/", views.admit_user, name="admit_user"),
-    path('delete/<int:user_id>/', views.delete_user, name='delete_user')
+    path('delete/<int:user_id>/', views.delete_user, name='delete_user'),
+    path('editar/<int:user_id>/', views.edit_user, name='edit_user'),
     ]

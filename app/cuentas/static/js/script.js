@@ -102,42 +102,17 @@ async function fetchUsers() {
     }
 }
 
-async function admitUser(userId) {
-    try {
-        const response = await fetch(`/admit_user/${userId}/`, { method: "POST" });
-        const result = await response.json();
-        alert(result.message);
-        fetchUsers(); // Recargar lista
-    } catch (error) {
-        console.error("Error al admitir usuario:", error);
-    }
-}
-
-// Recargar cuandoelimine usuarios
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".delete-user").forEach(button => {
-        button.addEventListener("click", async function() {
-            let userId = this.getAttribute("data-user-id");
-
-            try {
-                let response = await fetch(`/delete/${userId}/`, {
-                    method: "POST",
-                    headers: {
-                        "X-CSRFToken": "{{ csrf_token }}",
-                        "Content-Type": "application/json"
-                    }
-                });
-
-                if (response.status === 204) {
-                    this.closest(".col-12").remove();  // Elimina el usuario sin recargar
-                    setTimeout(() => {
-                        location.reload();  // Recarga la página después de 500 ms
-                    }, 100);
-                }
-            } catch (error) {
-                console.error("Error al eliminar usuario:", error);
-            }
+document.querySelectorAll('.btn-success').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();
+        const form = this.closest('form');
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+        })
+        .then(response => response.text())
+        .then(data => {
+            location.reload();  // Recarga la página después de la admisión
         });
     });
 });
-

@@ -1,31 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Editar Usuario</title>
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <h1>Editar Usuario</h1>
-                <form method="post" class="mb-3">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        {{ form.dni.label_tag }}
-                        {{ form.dni }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form.nombre_completo.label_tag }}
-                        {{ form.nombre_completo }}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
-                </form>
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<div class="h-screen flex items-center justify-center">
+    <div class="w-full md:w-1/2 flex justify-center items-center bg-white shadow-lg rounded-lg p-8">
+        <div class="flex flex-col justify-center items-center menu">
+            <div class="mb-5 text-center">
+                <h3 class="text-4xl font-bold">Editar Usuario</h3>
             </div>
+            <!-- Formulario de Edición -->
+            <form id="editUserForm" method="POST" class="w-10/12 space-y-4">
+                {% csrf_token %}
+
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="card" class="text-xl"></ion-icon>
+                    <input type="text" id="usernameBox" name="username" placeholder="Usuario" class="outline-none w-full" required minlength="3" maxlength="150" value="{{ form.username.value }}">
+                </div>
+
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="person" class="text-xl"></ion-icon>
+                    <input type="text" id="nombreBox" name="nombre" placeholder="Nombre" class="outline-none w-full" required value="{{ form.nombre.value }}">
+                </div>
+
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="person" class="text-xl"></ion-icon>
+                    <input type="text" id="apellidoBox" name="apellido" placeholder="Apellido" class="outline-none w-full" required value="{{ form.apellido.value }}">
+                </div>
+
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="mail" class="text-xl"></ion-icon>
+                    <input type="email" id="emailBox" name="email" placeholder="Correo electrónico" class="outline-none w-full" required value="{{ form.email.value }}">
+                </div>
+
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="key" class="text-xl"></ion-icon>
+                    <input type="password" id="passwordBox" name="password" placeholder="Contraseña" class="outline-none w-full" required minlength="8">
+                </div>
+
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="briefcase" class="text-xl"></ion-icon>
+                    <select id="areaBox" name="area" class="outline-none w-full" required>
+                        <option value="" disabled selected>Selecciona un área</option>
+                        <option value="Historia" {% if form.area.value == "Historia" %}selected{% endif %}>Historia</option>
+                        <option value="Bellas Artes" {% if form.area.value == "Bellas Artes" %}selected{% endif %}>Bellas Artes</option>
+                        <option value="Antropología" {% if form.area.value == "Antropología" %}selected{% endif %}>Antropología</option>
+                    </select>
+                </div>
+
+                <!-- Mensaje de error -->
+                {% if error_message %}
+                    <div class="text-red-500 text-center">{{ error_message }}</div>
+                {% endif %}
+
+                <div class="flex justify-center items-center mt-5">
+                    <button type="submit" id="updateBtn" class="cursor-pointer bg-blue-800 py-3 px-16 text-white font-semibold uppercase rounded hover:bg-blue-500">
+                        Actualizar
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
+
+<script src="{% static 'js/script.js' %}" defer></script>
+{% endblock %}
