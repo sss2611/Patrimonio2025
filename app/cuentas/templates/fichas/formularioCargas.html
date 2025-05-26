@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/patrimonio/app/static/css/formularioCargas.css">
+  <link rel="icon" type="image/logo" href="/patrimonio/app/static/img/favi_patrimonio.png" />
+
+  <title>Ficha de Registro</title>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-white shadow-md px-8 py-4 flex justify-between items-center">
+    <div class="flex items-center">
+      <img src="img/logo.png" alt="Logo" class="w-full h-10 mr-2 object-contain">
+      <div class="flex items-center gap-2">
+        <ion-icon name="person-circle" class="text-3xl"></ion-icon>
+        <p class="uppercase text-xs font-semibold">Àrea Historia</p>
+      </div>
+
+    </div>
+
+    <div class="flex items-center space-x-6 relative">
+      <div class="group relative">
+        <button class="flex items-center text-gray-700 hover:text-blue-600">
+          <ion-icon name="albums-outline" class="text-2xl mr-1"></ion-icon>
+          <span>Colecciones</span>
+          <ion-icon name="chevron-down-outline" class="text-xl ml-1"></ion-icon>
+        </button>
+        <div class="absolute hidden group-hover:block bg-white shadow-lg mt-2 rounded-lg py-2 w-40">
+          <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <ion-icon name="color-palette-outline" class="mr-2"></ion-icon> Bellas Artes
+          </a>
+          <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <ion-icon name="earth-outline" class="mr-2"></ion-icon> Antropología
+          </a>
+          <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100">
+            <ion-icon name="book-outline" class="mr-2"></ion-icon> Historia
+          </a>
+        </div>
+      </div>
+
+      <a href="welcomeh.html" class="flex items-center text-gray-700 hover:text-blue-600">
+        <ion-icon name="log-in-outline" class="text-2xl mr-1"></ion-icon>
+        <span>Inicio</span>
+      </a>
+
+      <a href="home.html" class="flex items-center text-gray-700 hover:text-blue-600">
+        <ion-icon name="log-in-outline" class="text-2xl mr-1"></ion-icon>
+        <span>Salir</span>
+      </a>
+
+    </div>
+
+  </header>
+
+  <body>
+    <h1 class="text-xl font-semibold">Centro de Interpretación y Conservación del Patrimonio
+      de Santiago del Estero (CICPSE)</h1>
+
+    <h2>FICHA DE REGISTRO INTERNA PARA IDENTIFICACIÓN DE OBJETOS </h2>
+
+    <form id="nroId" class="contenedor-boton">
+      <label>
+        N°:
+        <input type="number" id="nroId" required>
+      </label>
+    </form>
+    <div class="container">
+      <form id="datosIdentificacion" class="FormularioCarga">
+        <details>
+          <summary><h2>DATOS DE IDENTIFICACIÓN:</h2></summary>
+          <label>
+        N° de sigla CICPSE:
+        <input type="number" id="nroSigla" required>
+        Sigla RENICOA:
+        <input type="text" id="siglaRenicoa">
+        Otros N° de registro:
+        <input type="text" id="otrosNroRegistro">
+        Nombre de la colección:
+        <input type="text" id="nombreColeccion" required>
+        Nombre descriptivo:
+        <input type="text" id="nombreDescriptivo">
+        Tipo de material:
+        <input type="text" id="tipoMaterial" required>
+        Año de colección:
+        <input type="text" id="anioColeccion">
+        Forma de ingreso:
+        <input type="text" id="formaIngreso" required>
+        Ubicación:
+        <input type="text" id="ubicacion" required>
+        Otros datos:
+        <input type="text" id="otrosDatos">
+      </label>
+      </details>      
+    </form>
+
+    <form id="datosProcedencia" class="FormularioCarga">
+      <details>
+        <summary><h2>DATOS DE PROCEDENCIA:</h2></summary> 
+        <label>
+        País:
+        <input type="text" id="pais">
+        Provincia/Región:
+        <input type="text" id="paisRegion">
+        Departamento:
+        <input type="text" id="departamento">
+        Localidad:
+        <input type="text" id="localidad">
+        Sitio arqueológico:
+        <input type="text" id="sitioArqueologico">
+        Datos contextuales:
+        <input type="text" id="datosContextuales">
+      </label>
+      </details>
+    </form>
+
+    <form id="descripcionOjbeto" class="FormularioCarga">
+      <details>
+        <summary><h2>DESCRIPCIÓN DEL OBJETO:</h2>
+          <h2>Medidas ( en cm.)</h2></summary>
+      <label>
+        Altura/Largo:
+        <input type="number" id="alturaLargo">
+        Ancho/Diam. máximo:
+        <input type="number" id="anchoDiametroMaximo">
+        Espesor:
+        <input type="number" id="espesor">
+        Otras alturas:
+        <input type="number" id="otrasAlturas">
+        Diámetro mínimo:
+        <input type="number" id="diametroMinimo">
+        Otras:
+        <input type="text" id="otrasMedidas">
+      </label>
+      <h2>Descripción:</h2>
+      <label>
+        Forma:
+        <input type="text" id="forma">
+        Técnica:
+        <input type="text" id="tecnica">
+        Descripción:
+        <input type="text" id="descripcion">
+        Adscripción cultural/temporal:
+        <input type="text" id="dscripciónCulturalTemporal">
+      </label>
+      </details>
+    </form>
+
+    <form id="estadoConservacion" class="FormularioCarga">
+      <details>
+        <summary><h2>ESTADO DE CONSERVACIÓN: </h2></summary>
+      <label for="estadoConservacion">
+        Estado de Conservación:
+        <select id="estadoConservacion" name="estado" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="malo">Malo</option>
+          <option value="regular">Regular</option>
+          <option value="bueno">Bueno</option>
+          <option value="muy bueno">Muy Bueno</option>
+        </select>
+      </label>
+      <label for="estadoEstructural">
+        Estado Estructural:
+        <select id="estadoEstructural" name="estado" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="entero">Entero</option>
+          <option value="fragmentado">Fragmentado</option>
+          <option value="completo">Completo</option>
+          <option value="incompleto">Incompleto</option>
+          <option value="rajadoAgrietado">Rajado/Agrietado</option>
+          <option value="restaurado">Restaurado</option>
+          <option value="deformado">Deformado</option>
+        </select>
+      </label>
+      <label for="estadoSuperficie">
+        Estado de Superficie:
+        <select id="estadoSuperficie" name="estado" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="sinDeterioro">Sin deterioro</option>
+          <option value="suciedadSuperficial">Suciedad Superficial</option>
+          <option value="depositosForaneos">Depósitos foraneos</option>
+          <option value="desgaste">Desgaste</option>
+          <option value="perdida">Pérdida</option>
+          <option value="manchas">Manchas</option>
+        </select>
+      </label>
+      <label>
+        Características del deterioro:
+        <label for="estadoCaracteristicas">
+          Químico:
+          <select id="quimico" name="estado" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="sales">Sales</option>
+            <option value="oxidosCorrosion">Óxidos/Corrosión</option>
+          </select>
+          Mecánico:
+          <select id="mecanico" name="estado" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="golpe">Golpe</option>
+            <option value="corte">Corte</option>
+          </select>
+          Biológico:
+          <select id="biologico" name="estado" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option value="vegetal">Vegetal</option>
+            <option value="animal">Animal</option>
+            <option value="insecto">Insecto</option>
+            <option value="mohoHongo">Moho/Hongo</option>
+          </select>
+        </label>
+        Intervenciones:
+        <input type="text" id="intervenciones" required>
+        Observaciones:
+        <input type="text" id="observaciones">
+      </label>
+      </details>
+    </form>
+
+    <form id="datosAdicionales" class="FormularioCarga">
+      <details>
+        <summary><h2>DATOS ADICIONALES:</h2></summary>
+      <label>
+        Intervenciones de investigación:
+        <input type="text" id="intervencionesInvestigacion">
+        Préstamos/Exposiciones:
+        <input type="text" id="prestamosExposiciones">
+        Ubicaciones anteriores:
+        <input type="text" id="ubicacionesAnteriores">
+        Documentación asociada al objeto (etiquetas, informes, artículos, etc.):
+        <input type="text" id="documentacionAsociada">
+        Asociación con otros lotes / objetos:
+        <input type="text" id="asociacionOtrosLotesObjetos">
+        Historia del objeto en la institución (a quien perteneció, actas de ingreso, etc):
+        <input type="text" id="historiaObjeto">
+        Otra información:
+        <input type="text" id="otraInformacion">
+      </label>
+      </details>
+    </form>
+
+    <form id="fotografías" class="FormularioCarga" enctype="multipart/form-data">
+      <details>
+        <summary><h2>FOTOGRAFÍAS:</h2></summary>
+      <label>
+        Del objeto sin intervención:
+        <input type="file" id="sinIntervencion" name="sinIntervencion" accept="image/*">
+        Del objeto intervenido:
+        <input type="file" id="objetoIntervenido" name="objetoIntervenido" accept="image/*">
+        Rótulos / Detalles:
+        <input type="file" id="rotulosDetalles" name="rotulosDetalles" accept="image/*">
+        Otras fotografías:
+        <input type="file" id="otrasFotografias" name="otrasFotografias" accept="image/*" multiple>
+      </label>
+      </details>
+    </form>
+
+    <form id="datosRegistro" class="FormularioCarga">
+      <details>
+        <summary><h2>DATOS DEL REGISTRO:</h2></summary>
+      <label>
+        Fecha del Registro:
+        <input type="date" id="fechaRegistro" required>
+        Nombre y Apellido:
+        <input type="text" id="nombreApellido" required>
+        Dni:
+        <input type="number" id="dni" required>
+        Designación:
+        <input type="text" id="designacion" required>
+        Contacto:
+        <input type="number" id="contacto" required>
+      </label>
+      </details>
+    </form>
+  </div>
+
+    <div class="contenedor-boton">
+      <button class="buttonId">Cargar</button>
+    </div>
+  </body>
+  
+</html>

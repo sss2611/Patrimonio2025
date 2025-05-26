@@ -18,30 +18,66 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.4/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.4/dist/sweetalert2.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
+
 <body>
+{% if request.user.is_authenticated and request.path != "/" and request.path != "/register/" and request.path != "/login/" %}
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="#">
         <img src="{% static 'img/logo.png' %}" alt="Patrimonio SGO" class="w-full h-10 mr-2 object-contain">
-        <p class="level-item has-text-centered is-size-3"></p>
       </a>
-    </div>    
+      
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+        <a class="navbar-item" href="/profile/">
+          Bienvenido &nbsp; <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>
+        </a>
+
+        <a class="navbar-item" href="#"> Noticias </a>
+        <a class="navbar-item" href="#"> Colecciones </a>
+        <a class="navbar-item" href="#"> Cambiar contraseña </a>
+
+        {% if request.user.is_staff or request.user.is_superuser %}
+          <a class="navbar-item" href="#"> Cargar Noticias </a>
+          <a class="navbar-item" href="/users/"> Admitir Usuarios </a>
+        {% endif %}
+
+        {% if request.user.area == "Antropología" or request.user.is_superuser %}
+          <a class="navbar-item" href="#"> Carga de Ficha </a>
+        {% endif %}
+
+        {% if request.user.area == "Historia" or request.user.area == "Bellas Artes" or request.user.is_superuser %}
+        <a class="navbar-item" href="#"> Carga de Fichas </a>
+        {% endif %}
+      </div>
+      
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <p><a href="{% url 'cuentas:home' %}"><strong>Salir</strong></a></p>
+        </div>
+      </div>
+    </div>
+  </div>   
   </nav>
-  
+{% endif %}
+
   <div id="columns">
     {% block content %}
     {% endblock %}
   </div>
-   <footer>
+
+  <footer>
     <p>©PatrimonioSGO-2025</p>
     <div class="footer-images">
         <img src="{% static 'img/gob_sgo.jpg' %}" alt="Gobierno SGO">
         <img src="{% static 'img/cultura.jpg' %}" alt="CulturaSGO">
         <img src="{% static 'img/jefatura.jpg' %}" alt="Jefatura">
     </div>
-</footer>
-<script src="{% static 'scripts/script.js' %}"></script>
+  </footer>
+
+  <script src="{% static 'scripts/script.js' %}"></script>
+
 </body>
 </html>
