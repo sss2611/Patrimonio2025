@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'pages/home.html')
 
 def login_view(request):
     if request.method == 'POST':
@@ -20,16 +20,16 @@ def login_view(request):
         if user is not None:
             login(request, user)
             return redirect('/profile/')  # Redirige directamente al perfil
-        return render(request, 'login.html', {'error': 'Credenciales inválidas'})  # Devuelve el login con error
+        return render(request, 'auth/login.html', {'error': 'Credenciales inválidas'})  # Devuelve el login con error
 
-    return render(request, 'login.html')
+    return render(request, 'auth/login.html')
 
 @login_required
 def profile_view(request):
     if not request.user.is_superuser and not request.user.is_staff:
         return render(request, 'access_denied.html')  # Redirige a una página de acceso denegado
     
-    return render(request, 'profile.html', {'user': request.user})
+    return render(request, 'users/profile.html', {'user': request.user})
 
 def register(request):
     if request.method == 'POST':
@@ -42,10 +42,10 @@ def register(request):
 
         # Verificar si el usuario ya existe
         if CustomUser.objects.filter(username=username).exists():
-            return render(request, 'register.html', {'error_message': 'El nombre de usuario ya está en uso. Prueba otro.'})
+            return render(request, 'auth/register.html', {'error_message': 'El nombre de usuario ya está en uso. Prueba otro.'})
 
         if CustomUser.objects.filter(email=email).exists():
-            return render(request, 'register.html', {'error_message': 'El correo electrónico ya está registrado. Usa otro.'})
+            return render(request, 'auth/register.html', {'error_message': 'El correo electrónico ya está registrado. Usa otro.'})
 
         # Crear usuario
         CustomUser.objects.create(
@@ -57,9 +57,9 @@ def register(request):
             password=make_password(password)
         )
 
-        return render(request, 'register.html', {'success_message': 'Usuario registrado exitosamente!'})  # Envia mensaje de éxito
+        return render(request, 'auth/register.html', {'success_message': 'Usuario registrado exitosamente!'})  # Envia mensaje de éxito
 
-    return render(request, 'register.html')
+    return render(request, 'auth/register.html')
 
 
 #@login_required
@@ -67,7 +67,7 @@ def register(request):
 def users_list(request):
     """Muestra la lista de usuarios en una página HTML."""
     users = CustomUser.objects.all()
-    return render(request, "users_list.html", {"users": users})
+    return render(request, "users/users_list.html", {"users": users})
 
 @csrf_exempt
 def admit_user(request, user_id):
@@ -77,7 +77,7 @@ def admit_user(request, user_id):
     if request.method == "POST":
         user.is_staff = True
         user.save()
-        return redirect("users_list")  # Redirigir después de admitir
+        return redirect("users/users_list")  # Redirigir después de admitir
 
     return JsonResponse({"error": "Método no permitido"}, status=405)
 
