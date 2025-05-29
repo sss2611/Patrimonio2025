@@ -10,7 +10,8 @@ class CustomUser(AbstractUser):
     area = models.CharField(max_length=50, choices=[
         ('Historia', 'Historia'),
         ('Bellas Artes', 'Bellas Artes'),
-        ('Antropología', 'Antropología')
+        ('Antropología', 'Antropología'),
+        ('Staff', 'Staff')
     ], blank=True, null=True)
     
     admitido = models.BooleanField(default=False)
@@ -25,6 +26,10 @@ class CustomUser(AbstractUser):
     def save(self, *args, **kwargs):
         if self.is_superuser:  # Solo los superusuarios no necesitan área
            self.area = None
+           self.is_staff = True 
+        elif self.area == "Staff":  
+            self.is_staff = True
+            
         super().save(*args, **kwargs)
 
     def __str__(self):
