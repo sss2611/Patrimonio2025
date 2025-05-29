@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<section class="max-w-[80%] mx-auto">
+    <h3 class="text-center text-5xl font-semibold mt-5">Cargar Noticias</h3>
+
+    <form id="formNoticias" class="bg-gray-800 p-6 rounded-lg shadow-md max-w-md mx-auto">
+        <label for="titulo" class="block text-white mb-2">Título:</label>
+        <input type="text" id="titulo" name="titulo" class="w-full p-2 rounded-md mb-4" required>
+
+        <label for="contenido" class="block text-white mb-2">Contenido:</label>
+        <textarea id="contenido" name="contenido" class="w-full p-2 rounded-md mb-4" required></textarea>
+
+        <label for="portada" class="block text-white mb-2">Imagen de portada:</label>
+        <input type="file" id="portada" name="portada" class="w-full p-2 rounded-md mb-4" accept="image/*">
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Publicar Noticia</button>
+    </form>
+
+    <p id="mensaje" class="text-center text-green-400 mt-4"></p>
+</section>
+
+<script src="{% static 'js/carga_noticias.js' %}"></script>
+{% endblock %}

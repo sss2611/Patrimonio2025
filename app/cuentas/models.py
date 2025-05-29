@@ -12,6 +12,8 @@ class CustomUser(AbstractUser):
         ('Bellas Artes', 'Bellas Artes'),
         ('Antropología', 'Antropología')
     ], blank=True, null=True)
+    
+    admitido = models.BooleanField(default=False)
 
     groups = models.ManyToManyField(
         'auth.Group', related_name='customuser_groups', blank=True
@@ -21,8 +23,8 @@ class CustomUser(AbstractUser):
     )
 
     def save(self, *args, **kwargs):
-        if self.is_superuser or self.is_staff and self.area is not None:
-            self.area = None
+        if self.is_superuser:  # Solo los superusuarios no necesitan área
+           self.area = None
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -32,3 +34,12 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'nombre', 'apellido', 'email', 'password', 'area']
+
+class Noticia(models.Model):
+    titulo = models.CharField(max_length=255)
+    contenido = models.TextField()
+    fecha_publicacion = models.DateTimeField(auto_now_add=True)
+    portada = models.ImageField(upload_to='noticias_portadas/', null=True, blank=True)
+
+    def __str__(self):
+        return self.titulo

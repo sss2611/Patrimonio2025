@@ -219,3 +219,26 @@ footer img {
     background: linear-gradient(45deg, #388E3C, #689F38);
     transform: scale(1.1);
 }
+/* news */
+.menu-opciones {
+    display: none;
+    position: absolute;
+    background-color: #2d3748;
+    width: 130px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.menu-opciones button {
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-opciones button:hover {
+    background-color: #4a5568;
+}

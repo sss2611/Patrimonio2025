@@ -1,3 +1,4 @@
+// BOTON DE ACCESO EN HOME
 function login() {
     // Mostrar alerta con opciones
     Swal.fire({
@@ -17,6 +18,7 @@ function login() {
     });
 }
 
+// BOTON DE LOGIN
 document.addEventListener("DOMContentLoaded", function () {
     let loginBtn = document.getElementById("loginBtn");
 
@@ -69,50 +71,4 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.error("No se encontró el botón de login.");
     }
-});
-
-// boton de regitro
-async function fetchUsers() {
-    try {
-        const response = await fetch("/users_list/"); // Llamada a la API
-        const data = await response.json();
-        const usersList = document.getElementById("usersList");
-        usersList.innerHTML = ""; // Limpiar lista antes de agregar elementos
-
-        data.users.forEach(user => {
-            const listItem = document.createElement("li");
-            listItem.className = "list-group-item d-flex justify-content-between align-items-center";
-            listItem.innerHTML = `
-                <div>
-                    <strong>Usuario:</strong> ${user.username} <br>
-                    <strong>Email:</strong> ${user.email} <br>
-                    <strong>Área:</strong> ${user.area ? user.area : "Sin asignar"}
-                </div>
-                <div class="d-flex align-items-center">
-                    ${!user.is_staff && !user.is_superuser ? `
-                        <i class="bi bi-check-circle text-success cursor-pointer" onclick="admitUser(${user.id})" style="font-size: 1.5em;"></i>
-                    ` : '<span class="badge bg-warning text-dark me-2">Admitido</span>'}
-                </div>
-            `;
-
-            usersList.appendChild(listItem);
-        });
-    } catch (error) {
-        console.error("Error al obtener usuarios:", error);
-    }
-}
-
-document.querySelectorAll('.btn-success').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.preventDefault();
-        const form = this.closest('form');
-        fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-        })
-        .then(response => response.text())
-        .then(data => {
-            location.reload();  // Recarga la página después de la admisión
-        });
-    });
 });

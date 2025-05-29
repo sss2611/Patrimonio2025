@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+<section class="max-w-[80%] mx-auto">
+    <h3 class="text-center text-5xl font-semibold mt-5">Noticias</h3>
+
+    <!-- Contenido dinámico -->
+    <main class="flex-1 p-6 flex flex-col items-center gap-6" id="noticiasContainer">
+        {% if noticias %}
+            {% for noticia in noticias %}
+                <article class="bg-white shadow-md rounded-lg p-6 w-full max-w-3xl">
+                    <h4 class="text-2xl font-bold mb-2">{{ noticia.titulo }}</h4>
+                    <p class="text-gray-700 mb-4">{{ noticia.contenido }}</p>
+                    <p class="text-sm text-gray-500">Publicado el {{ noticia.fecha_publicacion|date:"d M Y" }}</p>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p class="text-gray-500">No hay noticias disponibles.</p>
+        {% endif %}
+    </main>
+</section>
+
+<script src="{% static 'js/noticias.js' %}"></script> <!-- Archivo JS separado -->
+{% endblock %}

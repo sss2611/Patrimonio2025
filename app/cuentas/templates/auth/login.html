@@ -10,6 +10,11 @@
             <div class="mb-5 text-center">
                 <h3 class="text-4xl font-bold">Ingreso</h3>
             </div>
+            
+            <!-- Mensaje de error -->
+            {% if error_message %}
+                <div class="text-red-500 text-center mb-4">{{ error_message }}</div>
+            {% endif %}
 
             <form method="POST" action="/login/">
                 {% csrf_token %}
@@ -39,6 +44,10 @@
     </div>
 </div>
 <!-- Fin del Formulario de Ingreso -->
+ {% if error_message %}
+    <div class="text-red-500 text-center mb-4">{{ error_message }}</div>
+{% endif %}
+
 
 <script src="{% static 'js/script.js' %}" defer></script>
 
