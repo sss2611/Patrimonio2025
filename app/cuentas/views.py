@@ -96,23 +96,17 @@ def users_list(request):
 
 @login_required
 def admit_user(request, user_id):
-    user = get_object_or_404(CustomUser, id=user_id)
-    
-    if not user.admitido:
-        user.is_staff = True  
-        user.admitido = True  
+    user = CustomUser.objects.get(id=user_id)
+    if user:
+        user.is_admitted = True  # Asegúrate de tener este campo en tu modelo
         user.save()
-    
-        if request.user.is_authenticated:
-            update_session_auth_hash(request, user)
-
-    return redirect("cuentas:users_list")
+    return redirect('cuentas:list_users')
 
 @login_required
 def delete_user(request, user_id):
     user = get_object_or_404(CustomUser, id=user_id)
     user.delete()
-    return redirect("cuentas:users_list")
+    return redirect(reverse("cuentas:users_list"))
 
 @login_required
 def edit_user(request, user_id):
