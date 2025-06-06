@@ -35,8 +35,11 @@ def login_view(request):
 def profile_view(request):
     if not (request.user.is_superuser or request.user.is_staff or request.user.admitido):
         return render(request, 'access_denied.html')  # Redirige si el usuario no tiene acceso
+    
+    pending_users = CustomUser.objects.filter(admitido=False).count()  # Contar usuarios pendientes
 
-    return render(request, 'users/profile.html', {'user': request.user})
+    return render(request, 'users/profile.html', {'user': request.user, 'pending_users': pending_users})
+    # return render(request, 'users/profile.html', {'user': request.user})
 
 # 📌 Registro de usuarios
 def register(request):
@@ -94,6 +97,10 @@ def users(request):
         "areas_dict": areas_dict
     })
 
+def pending_users_count(request):
+    if request.user.is_authenticated:
+        return {"pending_users": CustomUser.objects.filter(admitido=False).count()}
+    return {"pending_users": 0}
 
 @login_required
 def admit_user(request, user_id):
