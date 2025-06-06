@@ -18,4 +18,5 @@ urlpatterns = [
     path('api/noticias/', views.obtener_noticias, name='obtener_noticias'),
     path('bellas_artes/', views.bellas_artes, name='bellas_artes'),
     path('historia/', views.historia, name='historia'),
+     path('formularioAntropologia/', views.formularioAntropologia, name='formularioAntropologia'),
     ]

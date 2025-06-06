@@ -189,3 +189,6 @@ def bellas_artes(request):
 
 def historia(request):
     return render(request, 'pages/historia.html')
+
+def formularioAntropologia(request):
+    return render(request, 'fichas/formularioAntropologia.html')

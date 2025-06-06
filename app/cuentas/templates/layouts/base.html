@@ -35,11 +35,6 @@
         <a class="navbar-item" href="/profile/"> Colecciones </a>
         <a class="navbar-item" href="/update_password/"> Cambiar contraseña </a>
 
-        <!-- {% if request.user.is_staff or request.user.is_superuser %}
-          <a class="navbar-item" href="/cargar_noticias/"> Cargar Noticias </a>
-          <a class="navbar-item" href="/users/"> Admitir Usuarios </a>
-        {% endif %} -->
-
         
         {% if request.user.is_staff or request.user.is_superuser %}
           <a class="navbar-item" href="/cargar_noticias/"> Cargar Noticias </a>
@@ -53,7 +48,7 @@
         {% endif %}
 
         {% if request.user.area == "Antropología" or request.user.is_superuser %}
-          <a class="navbar-item" href="#"> Cargar Ficha </a>
+          <a class="navbar-item" href="/formularioAntropologia/"> Cargar Ficha </a>
         {% endif %}
 
         {% if request.user.area == "Historia" or request.user.area == "Bellas Artes" or request.user.is_superuser %}
