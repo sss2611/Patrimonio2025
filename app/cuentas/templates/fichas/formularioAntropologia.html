@@ -2,6 +2,55 @@
 {% load static %}
 {% block content %}
 
+<div class="h-screen flex items-center justify-center">
+    <div class="w-full md:w-3/4 lg:w-2/3 bg-white shadow-lg rounded-lg p-8">
+        <h1 class="text-4xl font-bold text-center mb-6">Centro de Interpretación y Conservación del Patrimonio de Santiago del Estero (CICPSE)</h1>
+        
+        <h2 class="text-2xl font-semibold text-center mb-4">Ficha de Registro Interna para Identificación de Objetos</h2>
+
+        <!-- Formulario de Identificación -->
+        <form method="POST" id="formIdentificacion">
+            {% csrf_token %}
+            
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="document-text" class="text-xl"></ion-icon>
+                    <input type="number" id="nroId" name="nroId" placeholder="N° Identificación" class="outline-none w-full" required>
+                </div>
+
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="library" class="text-xl"></ion-icon>
+                    <input type="text" id="nombreColeccion" name="nombreColeccion" placeholder="Nombre de la colección" class="outline-none w-full" required>
+                </div>
+
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="cube" class="text-xl"></ion-icon>
+                    <input type="text" id="tipoMaterial" name="tipoMaterial" placeholder="Tipo de material" class="outline-none w-full" required>
+                </div>
+
+                <div class="flex items-center gap-2 py-2 px-3 border rounded bg-white hover:border-red-500">
+                    <ion-icon name="location" class="text-xl"></ion-icon>
+                    <input type="text" id="ubicacion" name="ubicacion" placeholder="Ubicación" class="outline-none w-full" required>
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="cursor-pointer bg-blue-800 py-3 px-16 text-white font-semibold uppercase rounded hover:bg-blue-500">
+                        Guardar Datos
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'js/carga_noticias.js' %}" defer></script>
+{% endblock %}
+
+
+<!-- {% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+
 <h1 class="text-xl font-semibold">Centro de Interpretación y Conservación del Patrimonio
       de Santiago del Estero (CICPSE)</h1>
 
@@ -227,4 +276,4 @@
 
 
 <script src="{% static 'js/carga_noticias.js' %}"></script>
-{% endblock %}
+{% endblock %} -->
