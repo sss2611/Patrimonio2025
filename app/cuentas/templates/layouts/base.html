@@ -32,8 +32,10 @@
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
         <a class="navbar-item" href="/profile/">
-          Bienvenido &nbsp; <strong>{{ request.user.first_name }} {{ request.user.last_name }}</strong>
+          Bienvenido &nbsp; <strong>{{ request.user.nombre }} {{ request.user.apellido }}</strong>
         </a>
+        
+        <!-- <p>Usuario logueado: {{ request.user }}</p> -->
 
         <a class="navbar-item" href="/news/"> Noticias </a>
         <a class="navbar-item" href="/profile/"> Colecciones </a>
