@@ -29,6 +29,8 @@ class CustomUser(AbstractUser):
            self.is_staff = True 
         elif self.area == "Staff":  
             self.is_staff = True
+        else:
+            self.is_staff = False #para evitar que cualquier usuario tenga permisos de staff
             
         super().save(*args, **kwargs)
 
