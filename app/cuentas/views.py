@@ -77,10 +77,10 @@ def register(request):
 
 # 📌 Gestión de usuarios
 @login_required
-def users_list(request):
+def users(request):
     users = CustomUser.objects.all()
-    users_admitidos = users.filter(is_staff=True)
-    users_no_admitidos = users.filter(is_staff=False)
+    users_admitidos = users.filter(admitido=True)  # ✅ Filtrar por admitido
+    users_no_admitidos = users.filter(admitido=False)
 
     areas_dict = {}
     for user in users_admitidos:
@@ -94,19 +94,21 @@ def users_list(request):
         "areas_dict": areas_dict
     })
 
+
 @login_required
 def admit_user(request, user_id):
-    user = CustomUser.objects.get(id=user_id)
-    if user:
-        user.is_admitted = True  # Asegúrate de tener este campo en tu modelo
+    user = get_object_or_404(CustomUser, id=user_id) 
+   
+    if request.method == "POST":  
+        user.admitido = True  
         user.save()
-    return redirect('cuentas:list_users')
+    return redirect('cuentas:users')  
 
 @login_required
 def delete_user(request, user_id):
     user = get_object_or_404(CustomUser, id=user_id)
     user.delete()
-    return redirect(reverse("cuentas:users_list"))
+    return redirect(reverse("cuentas:users"))
 
 @login_required
 def edit_user(request, user_id):
@@ -123,7 +125,7 @@ def edit_user(request, user_id):
         user.is_staff = (request.POST.get("area") == "Staff") or request.POST.get("is_staff") == "on"
 
         user.save()
-        return redirect("cuentas:users_list")
+        return redirect("cuentas:users")
 
     return render(request, "fichas/edit_user.html", {"user": user})
 
